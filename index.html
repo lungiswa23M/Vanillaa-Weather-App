@@ -13,7 +13,7 @@
     <title>Vanilla Weather App</title>
     <style>
     body {
-  background: #f9f7fe;
+  background: #e2dbf6;
   font-family: "Roboto", sans-serif;
 }
 
@@ -23,7 +23,7 @@ a {
 
 .weather-app {
   background: white;
-  max-width: 600px;
+  max-width: 800px;
   margin: 60px auto;
   padding: 30px;
   border-radius: 10px;
@@ -32,12 +32,12 @@ a {
 }
 
 header {
-  border-bottom: 1px solid #f9f7fe;
+  border-bottom: 1px solid #e2dbf6;
   padding-bottom: 30px;
 }
 
 .search-input {
-  background-color: #f9f7fe;
+  background-color: #e2dbf6;
   border: none;
   color: rgba(39, 33, 66, 0.4);
   font-size: 16px;
@@ -89,7 +89,7 @@ main {
 
 .current-temperature-icon {
   position: relative;
-  top: -12px;
+  top: 0;
   font-size: 40px;
   margin-right: 10px;
 }
@@ -109,7 +109,7 @@ main {
 }
 
 footer {
-  border-top: 1px solid #f9f7fe;
+  border-top: 1px solid  #e2dbf6;
   text-align: center;
   padding-top: 15px;
 
@@ -142,10 +142,53 @@ footer {
             </p>
           </div>
           <div class="current-temperature">
-          <span class="current-temperature-icon">🌤️</span>
+          <span class="current-temperature-icon"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" /></span>
           <span class="current-temperature-value" id="current-temperature">13</span>
              <span class="current-temperature-unit">°C</span>
           </div>
+        </div>
+        <div class="forecast-weather">
+          <ul>
+            <li>
+              Sun
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" />
+              <br />
+              <strong>21°</strong>
+              13
+            </li>
+
+            <li>
+              Sun
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" />
+              <br />
+              <strong>22°</strong>
+              14
+            </li>
+
+            <li>
+              Sun
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" />
+              <br />
+              <strong>19°</strong>
+              11
+            </li>
+
+            <li>
+              Sun
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png" />
+              <br />
+              <strong>25°</strong>
+              16
+            </li>
+
+            <li>
+              Sun
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" />
+              <br />
+              <strong>21°</strong>
+              13
+            </li>
+          </ul>
         </div>
       </main>
       <footer>
