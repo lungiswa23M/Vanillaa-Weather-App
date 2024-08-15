@@ -89,15 +89,29 @@ main {
 
 .current-temperature-icon {
   position: relative;
-  top: 0;
+  top: 20%;
   font-size: 40px;
-  margin-right: 10px;
+  margin-right: 0px;
 }
 
 .current-temperature-value {
   font-size: 80px;
   font-weight: bold;
   color: rgba(39, 33, 66, 0.4);
+}
+
+p {
+ color: rgba(39, 33, 66, 0.4); 
+}
+
+li {
+  display: block;
+  color: rgba(39, 33, 66, 0.4); 
+}
+
+ul {
+  list-style: none;
+  padding: 10px;
 }
 
 .current-temperature-unit {
@@ -151,42 +165,52 @@ footer {
           <ul>
             <li>
               Sun
-              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" />
+              <span class="forecast-weather-image"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" /></span>
               <br />
+              <p>
               <strong>21°</strong>
-              13
+              13°
+              </p>
             </li>
 
             <li>
-              Sun
-              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" />
+              Mon
+              <span class="forecast-weather-image"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" /></span>
               <br />
+              <p>
               <strong>22°</strong>
-              14
+              14°
+              </p>
             </li>
 
             <li>
-              Sun
-              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" />
+              Tue
+              <span class="forecast-weather-image"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" /></span>
               <br />
+              <p>
               <strong>19°</strong>
-              11
+              11°
+              </p>
             </li>
 
             <li>
-              Sun
-              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png" />
+              Wed
+              <span class="forecast-weather-image"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png" /></span>
               <br />
+              <p>
               <strong>25°</strong>
-              16
+              16°
+              </p>
             </li>
 
             <li>
-              Sun
-              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" />
+              Thu
+              <span class="forecast-weather-image"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" /></span>
               <br />
+              <p>
               <strong>21°</strong>
-              13
+              13°
+              </p>
             </li>
           </ul>
         </div>
