@@ -12,132 +12,135 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <title>Vanilla Weather App</title>
     <style>
-    body {
-  background: white;
-  font-family: "Roboto", sans-serif;
-}
+      body {
+        background: white;
+        font-family: "Roboto", sans-serif;
+      }
 
-a {
-  color: #f65282;
-}
+      a {
+        color: #f65282;
+      }
 
-.weather-app {
-  background: white;
-  max-width: 600px;
-  margin: 60px auto;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
-  background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
-}
+      .weather-app {
+        background: white;
+        max-width: 600px;
+        margin: 60px auto;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+        background: linear-gradient(
+          to right,
+          rgb(242, 112, 156),
+          rgb(255, 148, 114)
+        );
+      }
 
-header {
-  border-bottom: 1px solid #e2dbf6;
-  padding-bottom: 30px;
-}
+      header {
+        border-bottom: 1px solid #e2dbf6;
+        padding-bottom: 30px;
+      }
 
-.search-input {
-  background-color: #e2dbf6;
-  border: none;
-  color: rgba(39, 33, 66, 0.4);
-  font-size: 16px;
-  padding: 20px;
-  width: 75%;
-  border-radius: 6px;
-}
+      .search-input {
+        background-color: #e2dbf6;
+        border: none;
+        color: rgba(39, 33, 66, 0.4);
+        font-size: 16px;
+        padding: 20px;
+        width: 75%;
+        border-radius: 6px;
+      }
 
-.search-button {
-  margin-left: 5px;
-  font-size: 16px;
-  background-color: #f65282;
-  color: rgba(39, 33, 66, 0.4);
-  border: none;
-  padding: 20px;
-  line-height: 1;
-  border-radius: 5px;
-}
+      .search-button {
+        margin-left: 5px;
+        font-size: 16px;
+        background-color: #f65282;
+        color: rgba(39, 33, 66, 0.4);
+        border: none;
+        padding: 20px;
+        line-height: 1;
+        border-radius: 5px;
+      }
 
-main {
-  padding: 30px 0;
-}
+      main {
+        padding: 30px 0;
+      }
 
-.current-temperature {
-  font-size: 48px;
-}
+      .current-temperature {
+        font-size: 48px;
+      }
 
-.current-weather {
-  display: flex;
-  justify-content: space-between;
-}
+      .current-weather {
+        display: flex;
+        justify-content: space-between;
+      }
 
-.current-city {
-  color: rgba(39, 33, 66, 0.4);
-  font-size: 38px;
-  font-weight: 900;
-  margin: 0;
-}
-.current-details {
-  color: rgba(39, 33, 66, 0.4);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
+      .current-city {
+        color: rgba(39, 33, 66, 0.4);
+        font-size: 38px;
+        font-weight: 900;
+        margin: 0;
+      }
+      .current-details {
+        color: rgba(39, 33, 66, 0.4);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+      }
 
-.current-details strong {
-  color:#f65282;
-}
+      .current-details strong {
+        color: #f65282;
+      }
 
-.current-temperature-icon {
-  position: relative;
-  top: 20%;
-  font-size: 40px;
-  margin-right: 0px;
-}
+      .current-temperature-icon {
+        position: relative;
+        top: 20%;
+        font-size: 40px;
+        margin-right: 0px;
+      }
 
-.forecast-weather-image {
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  right: 27%;
-}
+      .forecast-weather-image {
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        right: 27%;
+      }
 
-.current-temperature-value {
-  font-size: 80px;
-  font-weight: bold;
-  color: rgba(39, 33, 66, 0.4);
-}
+      .current-temperature-value {
+        font-size: 80px;
+        font-weight: bold;
+        color: rgba(39, 33, 66, 0.4);
+      }
 
-p {
- color: rgba(39, 33, 66, 0.4); 
-}
+      p {
+        color: rgba(39, 33, 66, 0.4);
+      }
 
-li {
-  display:inline-block;
-  color: rgba(39, 33, 66, 0.4); 
-}
+      li {
+        display: inline-block;
+        color: rgba(39, 33, 66, 0.4);
+      }
 
-ul {
-  list-style: none;
-  padding: 10px;
-}
+      ul {
+        list-style: none;
+        padding: 10px;
+      }
 
-.current-temperature-unit {
-  font-size: 28px;
-  position: relative;
-  top: -38px;
-  font-weight: bold;
-   color: rgba(39, 33, 66, 0.4);
-}
+      .current-temperature-unit {
+        font-size: 28px;
+        position: relative;
+        top: -38px;
+        font-weight: bold;
+        color: rgba(39, 33, 66, 0.4);
+      }
 
-footer {
-  border-top: 1px solid  #e2dbf6;
-  text-align: center;
-  padding-top: 15px;
+      footer {
+        border-top: 1px solid #e2dbf6;
+        text-align: center;
+        padding-top: 15px;
 
-  color: rgba(39, 33, 66, 0.4);
-}
+        color: rgba(39, 33, 66, 0.4);
+      }
     </style>
-     
   </head>
   <body>
     <div class="weather-app">
@@ -156,62 +159,82 @@ footer {
       <main>
         <div class="current-weather">
           <div>
-            <h1 class="current-city" id="current-city"></h1>
+            <h1 class="current-city" id="current-city">Stellenbosch</h1>
             <p class="current-details">
-              <span id="current-date"></span>, moderate rain <br />
+              <span id="current-date"></span>, <span id="description"></span> <br />
               Humidity: <strong>87%</strong>, Wind: <strong>7.2km/h</strong>
             </p>
           </div>
           <div class="current-temperature">
-          <span class="current-temperature-icon"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" /></span>
-          <span class="current-temperature-value" id="current-temperature"></span>
-             <span class="current-temperature-unit">°C</span>
+            <span class="current-temperature-icon"
+              ><img
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+            /></span>
+            <span class="current-temperature-value" id="current-temperature"
+              >19</span
+            >
+            <span class="current-temperature-unit">°C</span>
           </div>
         </div>
         <div class="forecast-weather">
           <ul>
             <li>
               Sun
-              <span class="forecast-weather-image"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" /></span>
+              <span class="forecast-weather-image"
+                ><img
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+              /></span>
               <p>
-              <strong>21°</strong>
-              13°
+                <strong>21°</strong>
+                13°
               </p>
             </li>
 
             <li>
               Mon
-              <span class="forecast-weather-image"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" /></span>
+              <span class="forecast-weather-image"
+                ><img
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"
+              /></span>
               <p>
-              <strong>22°</strong>
-              14°
+                <strong>22°</strong>
+                14°
               </p>
             </li>
 
             <li>
               Tue
-              <span class="forecast-weather-image"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" /></span>
+              <span class="forecast-weather-image"
+                ><img
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+              /></span>
               <p>
-              <strong>19°</strong>
-              11°
+                <strong>19°</strong>
+                11°
               </p>
             </li>
 
             <li>
               Wed
-              <span class="forecast-weather-image"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png" /></span>
+              <span class="forecast-weather-image"
+                ><img
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
+              /></span>
               <p>
-              <strong>25°</strong>
-              16°
+                <strong>25°</strong>
+                16°
               </p>
             </li>
 
             <li>
               Thu
-              <span class="forecast-weather-image"><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" /></span>
+              <span class="forecast-weather-image"
+                ><img
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"
+              /></span>
               <p>
-              <strong>21°</strong>
-              13°
+                <strong>21°</strong>
+                13°
               </p>
             </li>
           </ul>
@@ -242,26 +265,22 @@ footer {
       let temperatureElement = document.querySelector("#current-temperature");
       let temperature = Math.round(response.data.temperature.current);
       let cityElement = document.querySelector("#current-city");
+      let descriptionElement = document.querySelector("#description");
+
       cityElement.innerHTML = response.data.city;
+      descriptionElement.innerHTML = response.data.condition.description;
       temperatureElement.innerHTML = temperature;
     }
 
     function search(event) {
       event.preventDefault();
       let searchInputElement = document.querySelector("#search-input");
-      let city = searchInputElement.value;
-
-      
-    }
-
-    function searchCity(city) {
-      let apiKey = "d223149o5714c0b4820a8f3adba7bta9";
+      let city = searchInputElement.value; 
+       let apiKey = "d223149o5714c0b4820a8f3adba7bta9";
       let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
       axios.get(apiUrl).then(displayTemperature);
     }
-    searchCity("Stellenbosch");
-
+    
     function formatDate(date) {
       let minutes = date.getMinutes();
       let hours = date.getHours();
@@ -291,10 +310,9 @@ footer {
 
     let searchForm = document.querySelector("#search-form");
     searchForm.addEventListener("submit", search);
-    
+
     let currentDateELement = document.querySelector("#current-date");
     let currentDate = new Date();
     currentDateELement.innerHTML = formatDate(currentDate);
-   
   </script>
 </html>
