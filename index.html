@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <title>Vanillaa Weather App</title>
     <style>
       body {
@@ -144,109 +145,46 @@
     </style>
   </head>
   <body>
+    <body>
     <div class="weather-app">
       <header>
-        <form id="search-form">
+        <form class="search-form" id="search-form">
           <input
             type="search"
             placeholder="Enter a city.."
             required
-            class="search-input"
-            id="search-input"
+            id="search-form-input"
+            class="search-form-input"
           />
-          <input type="submit" value="Search" class="search-button" />
+          <input type="submit" value="Search" class="search-form-button" />
         </form>
       </header>
       <main>
-        <div class="current-weather">
+        <div class="weather-app-data">
           <div>
-            <h1 class="current-city" id="current-city">Stellenbosch</h1>
-            <p class="current-details">
-              <span id="current-date"></span>, <span id="description"></span> <br />
-              Humidity: <strong id="humidity">88%</strong>Wind:<strong id="wind-speed">9km/h</strong>
+            <h1 class="weather-app-city" id="city"></h1>
+            <p class="weather-app-details">
+              <span id="time"></span>,
+              <span id="description"></span>
+              <br />
+              Humidity: <strong id="humidity"></strong>, Wind:
+              <strong id="wind-speed"></strong>
             </p>
           </div>
-          <div class="current-temperature">
-            <span class="current-temperature-icon"
-              ><img
-                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
-            /></span>
-            <span class="current-temperature-value" id="current-temperature"
-              >19</span
-            >
-            <span class="current-temperature-unit">°C</span>
+          <div class="weather-app-temperature-container">
+            <div id="icon"></div>
+            <div class="weather-app-temperature" id="temperature"></div>
+            <div class="weather-app-unit">°C</div>
           </div>
         </div>
-        <div class="forecast-weather">
-          <ul>
-            <li>
-              Sun
-              <span class="forecast-weather-image"
-                ><img
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
-              /></span>
-              <p>
-                <strong>21°</strong>
-                13°
-              </p>
-            </li>
-
-            <li>
-              Mon
-              <span class="forecast-weather-image"
-                ><img
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"
-              /></span>
-              <p>
-                <strong>22°</strong>
-                14°
-              </p>
-            </li>
-
-            <li>
-              Tue
-              <span class="forecast-weather-image"
-                ><img
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
-              /></span>
-              <p>
-                <strong>19°</strong>
-                11°
-              </p>
-            </li>
-
-            <li>
-              Wed
-              <span class="forecast-weather-image"
-                ><img
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
-              /></span>
-              <p>
-                <strong>25°</strong>
-                16°
-              </p>
-            </li>
-
-            <li>
-              Thu
-              <span class="forecast-weather-image"
-                ><img
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"
-              /></span>
-              <p>
-                <strong>21°</strong>
-                13°
-              </p>
-            </li>
-          </ul>
-        </div>
+        <div class="weather-forecast" id="forecast"></div>
       </main>
       <footer>
         <p>
           This project was coded by
           <a href="#" target="_blank">Lungiswa Mgeyi</a> and is
           <a
-            href="https://github.com/lungiswa23M/wesite-application-hosting-"
+            href="https://github.com/lungiswa23M/"
             target="_blank"
           >
             open sourced on GitHub</a
@@ -259,65 +197,108 @@
           >
         </p>
       </footer>
-    </div>
   </body>
   <script>
-    function displayTemperature(response) {
-      let temperatureElement = document.querySelector("#current-temperature");
-      let temperature = Math.round(response.data.temperature.current);
-      let cityElement = document.querySelector("#current-city");
-      let descriptionElement = document.querySelector("#description");
-      let humidityElement = document.querySelector("#humidity");
-      let windSpeedElement = document.querySelector("#wind-speed");
+  function refreshWeather(response) {
+  let temperatureElement = document.querySelector("#temperature");
+  let temperature = response.data.temperature.current;
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windSpeedElement = document.querySelector("#wind-speed");
+  let timeElement = document.querySelector("#time");
+  let date = new Date(response.data.time * 1000);
+  let iconElement = document.querySelector("#icon");
 
-      cityElement.innerHTML = response.data.city;
-      descriptionElement.innerHTML = response.data.condition.description;
-      humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
-      windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
-      temperatureElement.innerHTML = temperature;
+  cityElement.innerHTML = response.data.city;
+  timeElement.innerHTML = formatDate(date);
+  descriptionElement.innerHTML = response.data.condition.description;
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+  windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+  temperatureElement.innerHTML = Math.round(temperature);
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
+
+  getForecast(response.data.city);
+}
+
+function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${day} ${hours}:${minutes}`;
+}
+
+function searchCity(city) {
+  let apiKey = "b2a5adcct04b33178913oc335f405433";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(refreshWeather);
+}
+
+function handleSearchSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-form-input");
+
+  searchCity(searchInput.value);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
+function getForecast(city) {
+  let apiKey = "b2a5adcct04b33178913oc335f405433";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  let forecastHtml = "";
+
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
+      <div class="weather-forecast-day">
+        <div class="weather-forecast-date">${formatDay(day.time)}</div>
+        <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
+        <div class="weather-forecast-temperatures">
+          <div class="weather-forecast-temperature">
+            <strong>${Math.round(day.temperature.maximum)}º</strong>
+          </div>
+          <div class="weather-forecast-temperature">${Math.round(
+            day.temperature.minimum
+          )}º</div>
+        </div>
+      </div>
+    `;
     }
+  });
 
-    function search(event) {
-      event.preventDefault();
-      let searchInputElement = document.querySelector("#search-input");
-      let city = searchInputElement.value; 
-       let apiKey = "d223149o5714c0b4820a8f3adba7bta9";
-      let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-      axios.get(apiUrl).then(displayTemperature);
-    }
-    
-    function formatDate(date) {
-      let minutes = date.getMinutes();
-      let hours = date.getHours();
-      let day = date.getDay();
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
 
-      if (minutes < 10) {
-        minutes = `0${minutes}`;
-      }
+let searchFormElement = document.querySelector("#search-form");
+searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-      if (hours < 10) {
-        hours = `0${hours}`;
-      }
-
-      let days = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ];
-
-      let formattedDay = days[day];
-      return `${formattedDay} ${hours}:${minutes}`;
-    }
-
-    let searchForm = document.querySelector("#search-form");
-    searchForm.addEventListener("submit", search);
-
-    let currentDateELement = document.querySelector("#current-date");
-    let currentDate = new Date();
-    currentDateELement.innerHTML = formatDate(currentDate);
+searchCity("Stellenbosch");
   </script>
 </html>
